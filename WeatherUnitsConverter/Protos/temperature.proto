@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "WeatherLogger.Service";
+
+package temperature;
+
+// The greeting service definition.
+service Temperaturer {
+  // Sends a greeting
+  rpc GetTemperature (TemperatureRequest) returns (TemperatureReply);
+}
+
+enum Units {
+		I = 0;
+		M = 1;
+}
+
+// The request message containing the user's name.
+message TemperatureRequest {
+  string city = 1;	
+  Units unit = 2;
+}
+
+// The response message containing the greetings.
+message TemperatureReply {
+  float Temperature = 1;
+  float FeelsLike = 2;
+  float TempMin = 3;
+  float TempMax = 4;
+}

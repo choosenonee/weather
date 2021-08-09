@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Domain\Logic\**" />
+    <Compile Remove="Domain\Models\**" />
+    <Compile Remove="Domain\ViewModels\**" />
+    <Content Remove="Domain\Logic\**" />
+    <Content Remove="Domain\Models\**" />
+    <Content Remove="Domain\ViewModels\**" />
+    <EmbeddedResource Remove="Domain\Logic\**" />
+    <EmbeddedResource Remove="Domain\Models\**" />
+    <EmbeddedResource Remove="Domain\ViewModels\**" />
+    <None Remove="Domain\Logic\**" />
+    <None Remove="Domain\Models\**" />
+    <None Remove="Domain\ViewModels\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\ValuesController.cs" />
+    <Compile Remove="DictionariesList.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Domain\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Weather.Domain\Weather.Domain.csproj" />
+    <ProjectReference Include="..\Weather.Services\Weather.Services.csproj" />
+  </ItemGroup>
+
+</Project>
