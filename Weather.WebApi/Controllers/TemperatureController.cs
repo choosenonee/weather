@@ -13,12 +13,12 @@ using Weather.Services.UnitsConverter;
 namespace api.Controllers
 {
     /*
-      http://localhost:64843/api/v1/Temperature/Szczecin&unit=Metric
-      http://localhost:64843/api/v2/Temperature/Szczecin&unit=Metric
-      http://localhost:64843/api/v3/Temperature/Szczecin&unit=Metric
+     * http://localhost:64843/api/Temperature/Szczecin&unit=Metric?api-version=1.0
+     * http://localhost:64843/api/Temperature/Szczecin&unit=Metric?api-version=2.0
+     * http://localhost:64843/api/Temperature/Szczecin&unit=Metric?api-version=3.0
      */
 
-    [Route("api/v{api-version:apiVersion}/[controller]")]
+    [Route("api/[controller]")]
     [ApiVersion("1.0")]
     [ApiVersion("2.0")]
     [ApiVersion("3.0")]
