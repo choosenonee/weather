@@ -12,12 +12,6 @@ using Weather.Services.UnitsConverter;
 
 namespace api.Controllers
 {
-    /*
-     * http://localhost:64843/api/Temperature/Szczecin&unit=Metric?api-version=1.0
-     * http://localhost:64843/api/Temperature/Szczecin&unit=Metric?api-version=2.0
-     * http://localhost:64843/api/Temperature/Szczecin&unit=Metric?api-version=3.0
-     */
-
     [Route("api/[controller]")]
     [ApiVersion("1.0")]
     [ApiVersion("2.0")]
