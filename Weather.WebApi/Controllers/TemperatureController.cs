@@ -26,9 +26,9 @@ namespace api.Controllers
             this._mapper = mapper;
         }
 
-        [HttpGet("city")]
+        [HttpGet("{city}")]
         [ProducesResponseType(typeof(TemperatureDto), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<TemperatureDto>> Get([Required][FromQuery] string city, [FromQuery] Units unit = Units.Metric)
+        public async Task<ActionResult<TemperatureDto>> Get([Required][FromRoute] string city, [FromQuery] Units unit = Units.Metric)
         {
             if (string.IsNullOrWhiteSpace(city))
             {
