@@ -2,6 +2,7 @@
 using api.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Threading;
@@ -11,7 +12,16 @@ using Weather.Services.UnitsConverter;
 
 namespace api.Controllers
 {
-    [Route("api/[controller]")]
+    /*
+      http://localhost:64843/api/v1/Temperature/Szczecin&unit=Metric
+      http://localhost:64843/api/v2/Temperature/Szczecin&unit=Metric
+      http://localhost:64843/api/v3/Temperature/Szczecin&unit=Metric
+     */
+
+    [Route("api/v{api-version:apiVersion}/[controller]")]
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
+    [ApiVersion("3.0")]
     [ApiController]
     public class TemperatureController : ControllerBase
     {
@@ -26,9 +36,11 @@ namespace api.Controllers
             this._mapper = mapper;
         }
 
-        [HttpGet("city")]
+        [HttpGet("{city}")]
+        [HttpHead]
+        [MapToApiVersion("1.0")]
         [ProducesResponseType(typeof(TemperatureDto), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<TemperatureDto>> Get([Required][FromQuery] string city, [FromQuery] Units unit = Units.Metric)
+        public async Task<ActionResult<TemperatureDto>> Get10([Required] string city, [FromQuery] Units unit = Units.Metric)
         {
             if (string.IsNullOrWhiteSpace(city))
             {
@@ -39,6 +51,32 @@ namespace api.Controllers
             var weatherConverted = this._unitsConverterService.ConvertTemperature(weather, unit);
             var temperature = this._mapper.Map<TemperatureDto>(weatherConverted.main);
             return this.Ok(temperature);
+        }
+
+        [HttpGet("{city}")]
+        [HttpHead]
+        [MapToApiVersion("2.0")]
+        [ProducesResponseType(typeof(TemperatureDto), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<TemperatureDto>> Get20([Required] string city, [FromQuery] Units unit = Units.Metric)
+        {
+            if (string.IsNullOrWhiteSpace(city))
+            {
+                return this.BadRequest("City cannot be empty");
+            }
+
+            var weather = await this._weatherService.GetWeather(city, CancellationToken.None);
+            var weatherConverted = this._unitsConverterService.ConvertTemperature(weather, unit);
+            var temperature = this._mapper.Map<TemperatureDto>(weatherConverted.main);
+            return this.Ok(temperature);
+        }
+
+        [HttpGet("{city}")]
+        [HttpHead]
+        [MapToApiVersion("3.0")]
+        [ProducesResponseType(typeof(TemperatureDto), (int)HttpStatusCode.OK)]
+        public ActionResult<TemperatureDto> GetOld([Required] string city, [FromQuery] Units unit = Units.Metric)
+        {
+            return this.NoContent();
         }
     }
 }
