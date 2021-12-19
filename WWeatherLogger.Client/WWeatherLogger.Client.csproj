@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>dotnet-WWeatherLogger.Client-A732DAB5-E030-45B6-BBB8-6EF19D7499DD</UserSecretsId>
   </PropertyGroup>
 
