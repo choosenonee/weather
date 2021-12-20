@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weather.Services", "..\Weat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherLogger.Service", "..\WeatherUnitsConverter\WeatherLogger.Service.csproj", "{4C38B899-FF7E-404F-834E-D5CF64D85D0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WWeatherLogger.Client", "..\WWeatherLogger.Client\WWeatherLogger.Client.csproj", "{D4864A35-3336-487D-BD46-D59070367095}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
